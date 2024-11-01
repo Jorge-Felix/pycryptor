@@ -1,0 +1,386 @@
+:root {
+    --primary-bg: #ffffff;
+    --secondary-bg: #f8f9fa;
+    --border-color: #e9ecef;
+    --text-color: #495057;
+    --header-color: #212529;
+    --accent-color: #228be6;
+    --hover-color: #f1f3f5;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --success-color: #40c057;
+    --error-color: #fa5252;
+    --warning-color: #fd7e14;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    height: 100vh;
+    overflow: hidden;
+    background-color: var(--primary-bg);
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    background-color: var(--primary-bg);
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 320px;
+    background-color: var(--secondary-bg);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    transition: width 0.3s ease;
+}
+
+.search-box {
+    padding: 1rem;
+    background-color: var(--primary-bg);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(34,139,230,0.1);
+}
+
+.operation-category {
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+}
+
+.operation-category h3 {
+    color: var(--header-color);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    padding-left: 0.5rem;
+}
+
+.operation-category .operation {
+    margin-bottom: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.operation-category .operation:last-child {
+    margin-bottom: 0;
+}
+
+/* Separador entre categorías */
+.operation-category:not(:last-child) {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.operation {
+    padding: 0.75rem 1rem;
+    margin: 0.25rem 0;
+    background-color: var(--primary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    cursor: move;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.operation:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Main Content Styles */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: var(--primary-bg);
+}
+
+/* Recipe Area */
+.recipe-area {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.recipe-container {
+    min-height: 100px;
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    margin: 0.75rem 0;
+    padding: 1rem;
+    transition: all 0.2s ease;
+}
+
+.recipe-container.drag-over {
+    border-color: var(--accent-color);
+    background-color: rgba(34,139,230,0.05);
+}
+
+/* IO Container */
+.io-container {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.input-panel, .output-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondary-bg);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.input-panel h3, .output-panel h3 {
+    color: var(--header-color);
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+textarea {
+    flex: 1;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    resize: none;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    transition: all 0.2s ease;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(34,139,230,0.1);
+}
+
+button {
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.primary-button {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.primary-button:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+.tool-button {
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+.tool-button:hover {
+    background-color: var(--hover-color);
+    border-color: var(--accent-color);
+}
+
+/* Panel de opciones */
+.options-panel {
+    padding: 1.5rem;
+    background-color: var(--secondary-bg);
+    border-top: 1px solid var(--border-color);
+}
+
+.options-panel h3 {
+    color: var(--header-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.key-input {
+    background-color: var(--primary-bg);
+    padding: 1.25rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.key-input label {
+    display: block;
+    color: var(--header-color);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.key-input input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-family: var(--font-mono);
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    transition: all 0.2s ease;
+    margin-bottom: 0.75rem;
+}
+
+.key-input input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(34,139,230,0.1);
+}
+
+.key-input input:hover {
+    border-color: var(--accent-color);
+}
+
+.key-input input::placeholder {
+    color: #adb5bd;
+}
+
+/* Estilo para el botón de mostrar/ocultar clave */
+.key-input .toggle-key-visibility {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+    color: var(--text-color);
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.key-input .toggle-key-visibility:hover {
+    background-color: var(--hover-color);
+    border-color: var(--accent-color);
+}
+
+.key-input .toggle-key-visibility i {
+    margin-right: 0.5rem;
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--secondary-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a0aec0;
+}
+
+/* Animaciones y transiciones */
+.fade-in {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Tooltips */
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]:before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem;
+    background-color: var(--header-color);
+    color: white;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+}
+
+[data-tooltip]:hover:before {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Estados de carga */
+.loading {
+    position: relative;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.loading:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberChef Clone</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Panel izquierdo - Operaciones -->
+        <div class="sidebar">
+            <div class="search-box">
+                <input type="text" id="operation-search" placeholder="Buscar operaciones...">
+            </div>
+            
+            <!-- Operaciones de Codificación -->
+            <div class="operation-category">
+                <h3>Codificación</h3>
+                <div class="operation" draggable="true" data-op="base64_encode">Base64 Encode</div>
+                <div class="operation" draggable="true" data-op="base64_decode">Base64 Decode</div>
+                <div class="operation" draggable="true" data-op="hex_encode">Hex Encode</div>
+                <div class="operation" draggable="true" data-op="hex_decode">Hex Decode</div>
+                <div class="operation" draggable="true" data-op="url_encode">URL Encode</div>
+                <div class="operation" draggable="true" data-op="url_decode">URL Decode</div>
+            </div>
+
+            <!-- Operaciones de Cifrado -->
+            <div class="operation-category">
+                <h3>Cifrado Clásico</h3>
+                <div class="operation" draggable="true" data-op="vigenere_encrypt">Vigenère Encrypt</div>
+                <div class="operation" draggable="true" data-op="vigenere_decrypt">Vigenère Decrypt</div>
+            </div>
+
+            <div class="operation-category">
+                <h3>Cifrado Moderno</h3>
+                <div class="operation" draggable="true" data-op="aes_encrypt">AES Encrypt</div>
+                <div class="operation" draggable="true" data-op="aes_decrypt">AES Decrypt</div>
+                <div class="operation" draggable="true" data-op="des_encrypt">3DES Encrypt</div>
+                <div class="operation" draggable="true" data-op="des_decrypt">3DES Decrypt</div>
+            </div>
+
+            <!-- Hashing -->
+            <div class="operation-category">
+                <h3>Hashing</h3>
+                <div class="operation" draggable="true" data-op="md5">MD5</div>
+                <div class="operation" draggable="true" data-op="sha256">SHA256</div>
+                <div class="operation" draggable="true" data-op="sha512">SHA512</div>
+                <div class="operation" draggable="true" data-op="bcrypt">BCrypt</div>
+            </div>
+
+            <!-- RSA -->
+            <div class="operation-category">
+                <h3>RSA</h3>
+                <div class="operation" draggable="true" data-op="rsa_encrypt">RSA Encrypt</div>
+                <div class="operation" draggable="true" data-op="rsa_decrypt">RSA Decrypt</div>
+                <button id="generate-rsa-keys" class="tool-button">Generar Claves RSA</button>
+            </div>
+        </div>
+
+        <!-- Panel principal -->
+        <div class="main-content">
+            <!-- Área de receta -->
+            <div class="recipe-area">
+                <h3>Receta</h3>
+                <div id="recipe" class="recipe-container"></div>
+                <div class="recipe-buttons">
+                    <button id="clear-recipe" class="tool-button">Limpiar</button>
+                    <button id="bake" class="primary-button">¡Cocinar!</button>
+                </div>
+            </div>
+
+            <!-- Área de entrada/salida -->
+            <div class="io-container">
+                <div class="input-panel">
+                    <h3>Entrada</h3>
+                    <textarea id="input" placeholder="Ingresa tu texto aquí..."></textarea>
+                    <button id="magic" class="magic-button">Magic</button>
+                </div>
+
+                <div class="output-panel">
+                    <h3>Salida</h3>
+                    <textarea id="output" readonly></textarea>
+                    <button id="copy-output" class="tool-button">Copiar</button>
+                </div>
+            </div>
+
+            <!-- Panel de opciones -->
+            <div id="options-panel" class="options-panel hidden">
+                <h3>Opciones de Cifrado</h3>
+                <div class="key-input hidden">
+                    <label for="crypto-key">Clave de cifrado</label>
+                    <input 
+                        type="password" 
+                        id="crypto-key" 
+                        placeholder="Ingresa tu clave secreta aquí..."
+                        autocomplete="off"
+                        spellcheck="false"
+                    >
+                    <button class="toggle-key-visibility" id="toggle-key-visibility">
+                        <i>👁️</i> Mostrar clave
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html> 
